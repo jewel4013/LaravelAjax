@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h1 class="my-5 text-center">Laravel Ajax Practice</h1>
+                <h1 class="my-2 text-center">Laravel Ajax Practice</h1>
                 <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">Add a product</a>
                 <div class="table-data">
                     <table class="table table-striped">
@@ -30,24 +30,37 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                                <a href="#" class="btn btn-success btn-sm"><i class="las la-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="las la-times"></i></a>
-                            </td>
-                          </tr>
-
+                            @foreach ($products as $key=>$product)
+                                <tr>
+                                    <th scope="row">{{ $key+1 }}</th>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>
+                                        <a href=""
+                                            class="btn btn-success btn-sm update_product_form"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#updateProductModal"
+                                            data-id="{{ $product->id }}"
+                                            data-name="{{ $product->name }}"
+                                            data-price="{{ $product->price }}"
+                                            >
+                                            <i class="las la-edit"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm"><i class="las la-times"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                       </table>
+
+                      {!! $products->links() !!}
                 </div>
             </div>
         </div>
     </div>
 
     @include('productModel')
+    @include('updateProductModel')
     @include('ajaxPart')
   </body>
 </html>

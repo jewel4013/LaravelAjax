@@ -12,7 +12,8 @@ class productControl extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $products = Product::latest()->paginate(7);
+        return view('welcome', compact('products'));
     }
 
     /**
@@ -66,9 +67,21 @@ class productControl extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'up_name' => 'required|unique:products,name,'.$request->up_id,
+            'up_price' => 'required'
+        ]);
+
+        Product::where('id', $request->up_id)->update([
+            'name' => $request->up_name,
+            'price' => $request->up_price,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+        ]);
     }
 
     /**
