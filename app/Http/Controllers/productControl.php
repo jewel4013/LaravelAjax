@@ -12,7 +12,7 @@ class productControl extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(7);
+        $products = Product::latest()->paginate(5);
         return view('welcome', compact('products'));
     }
 
@@ -87,8 +87,12 @@ class productControl extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Product::find($request->id)->delete();
+        return response()->json([
+            'status' => 'success',
+        ]);
+
     }
 }

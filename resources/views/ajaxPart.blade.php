@@ -26,7 +26,7 @@
                         if(res.status == 'success'){
                             $('#productModal').modal('hide');
                             $('#addProductModel')[0].reset();
-                            $('span').remove();
+                            $('.errMsgContent').empty();
                             $('.table').load(location.href+' .table');
                         }
                      },
@@ -64,7 +64,7 @@
                         if(res.status == 'success'){
                             $('#updateProductModal').modal('hide');
                             $('#updateProductModel')[0].reset();
-                            $('span').remove();
+                            $('.errMsgContent').empty();
                             $('.table').load(location.href+' .table');
                         }
                      },
@@ -75,7 +75,33 @@
                         });
                     }
                 });
-            })
+            });
+
+            $(document).on('click', '.delete_product', function(e){
+                e.preventDefault();
+                let id = $(this).data('id');
+                if(confirm("Are you realy want to delete this data.")){
+                    $.ajax({
+                        url: "{{ route('porductDelete') }}",
+                        method: 'post',
+                        data: {id:id},
+                        success: function(res){
+                            if(res.status == 'success'){
+                                $('.table').load(location.href+' .table');
+                            }
+                        },
+                    });
+                }
+            });
+
+
+
+
+            $(document).on('click', '.model_close_btn', function(e){
+                e.preventDefault();
+                $('#updateProductModel, #addProductModel')[0].reset();
+                $('.errMsgContent').empty();
+            });
 
 
         });

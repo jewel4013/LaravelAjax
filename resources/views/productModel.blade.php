@@ -29,7 +29,7 @@
 
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary model_close_btn" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary add_product">Save Product</button>
               </div>
             </div>

@@ -46,14 +46,22 @@
                                             >
                                             <i class="las la-edit"></i>
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="las la-times"></i></a>
+                                        <a href=""
+                                            class="btn btn-danger btn-sm delete_product"
+                                            data-id="{{ $product->id }}"
+                                            >
+                                            <i class="las la-times"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                      </table>
+                    </table>
+                    {!! $products->links() !!}
 
-                      {!! $products->links() !!}
+                        {{-- <span class="pro_link">
+                            {!! $products->links() !!}
+                        </span> --}}
                 </div>
             </div>
         </div>
