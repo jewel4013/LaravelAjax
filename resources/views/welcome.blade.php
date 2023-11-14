@@ -72,6 +72,6 @@
     @include('updateProductModel')
     @include('ajaxPart')
 
-    {!! Toastr::message() !!}
+    {{-- {!! Toastr::message() !!} --}}
   </body>
 </html>

@@ -18,3 +18,4 @@ Route::get('/', [productControl::class, 'index'])->name('product');
 Route::post('/add-product', [productControl::class, 'store'])->name('porductStore');
 Route::post('/update-product', [productControl::class, 'update'])->name('porductUpdate');
 Route::post('/delete-product', [productControl::class, 'destroy'])->name('porductDelete');
+Route::get('/pagination/paginate-data', [productControl::class, 'paginate']);

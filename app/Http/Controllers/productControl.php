@@ -12,7 +12,7 @@ class productControl extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(15);
+        $products = Product::latest()->paginate(8);
         return view('welcome', compact('products'));
     }
 
@@ -94,5 +94,10 @@ class productControl extends Controller
             'status' => 'success',
         ]);
 
+    }
+
+    public function paginate(Request $request){
+        $products = Product::latest()->paginate(8);
+        return view('paginateData', compact('products'))->render();
     }
 }

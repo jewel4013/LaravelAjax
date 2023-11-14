@@ -72,7 +72,7 @@
                 e.preventDefault();
                 let up_id = $('#up_id').val();
                 let up_name = $('#up_name').val();
-                let up_price = $('#up_price').val();                
+                let up_price = $('#up_price').val();
 
                 $.ajax({
                     url: "{{ route('porductUpdate') }}",
@@ -156,6 +156,26 @@
                 $('#updateProductModel, #addProductModel')[0].reset();
                 $('.errMsgContent').empty();
             });
+
+
+
+
+            // paginate
+            $(document).on('click', '.pagination a', function(e){
+                e.preventDefault();
+                let page = $(this).attr('href').split('page=')[1];
+                product(page)
+
+            });
+
+            function product(page){
+                $.ajax({
+                    url: "/pagination/paginate-data?page="+page,
+                    success:function(res){
+                        $('.table-data').html(res);
+                    }
+                });
+            }
 
 
         });
