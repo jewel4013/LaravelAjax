@@ -12,7 +12,7 @@ class productControl extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(8);
+        $products = Product::latest()->paginate(5);
         return view('welcome', compact('products'));
     }
 
@@ -97,7 +97,22 @@ class productControl extends Controller
     }
 
     public function paginate(Request $request){
-        $products = Product::latest()->paginate(8);
+        $products = Product::latest()->paginate(5);
         return view('paginateData', compact('products'))->render();
+    }
+
+    public function search(Request $request){
+        $products = Product::where('name', 'like', '%'.$request->keys.'%')
+            ->orWhere('price', 'like', '%'.$request->keys.'%')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+        
+        if($products->count() >= 1){
+            return view('paginateData', compact('products'))->render();
+        }else{
+            return response()->json([
+                'status' => 'nothing_found',
+            ]);
+        }
     }
 }

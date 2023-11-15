@@ -167,7 +167,6 @@
                 product(page)
 
             });
-
             function product(page){
                 $.ajax({
                     url: "/pagination/paginate-data?page="+page,
@@ -177,6 +176,24 @@
                 });
             }
 
+
+
+            // search product
+            $(document).on('keyup', function(e){
+                e.preventDefault();
+                let keys = $('#search').val();
+                $.ajax({
+                    url: "{{ route('porductSearch') }}",
+                    method: 'GET',
+                    data: {keys:keys},
+                    success: function(res){
+                        $('.table-data').html(res);
+                        if(res.status == 'nothing_found'){
+                            $('.table-data').html('<span class="text-danger">'+'Nothing found'+'</span>');
+                        }
+                    }
+                });
+            });
 
         });
     </script>

@@ -20,6 +20,7 @@
             <div class="col-md-8">
                 <h1 class="my-2 text-center">Laravel Ajax Practice</h1>
                 <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">Add a product</a>
+                <input type="text" class="form-control my-2" id="search" name="search" placeholder="Search product">
                 <div class="table-data">
                     <table class="table table-striped">
                         <thead>
